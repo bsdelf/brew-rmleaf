@@ -1,6 +1,6 @@
 #!/bin/sh
 
-#  Version 0.2.1
+#  Version 0.3.0
 
 #  Copyright (c) 2016-2019 Yanhui Shen
 #  All rights reserved.
@@ -30,7 +30,7 @@ cols=$((`stty size | cut -d' ' -f2` - 6))
 rows=$((`stty size | cut -d' ' -f1` - 4))
 height=$(($rows - 7))
 sep="#"
-PkgQuery="brew leaves | sort"
+PkgQuery="brew leaves | xargs brew desc"
 PkgDelete="brew uninstall"
 FmtDialog="dialog --checklist \"Leaf Packages: %s\" $rows $cols $height %s"
 
@@ -54,8 +54,8 @@ while true; do
 
     IFS=$'\n'
     for line in $AllLeaves; do
-        port=$line
-        desc=''
+        port=`echo $line | cut -d':' -f1`
+        desc=`echo $line | cut -d':' -f2- | awk '{$1=$1};1' | sed "s/\"/'/g"`
         ret=`echo "$KeptLeaves" | grep "$port"`
         if [ -z "$ret" ]; then
             NewLeaves="$NewLeaves $port \"$desc\" off"
