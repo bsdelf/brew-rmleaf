@@ -34,6 +34,16 @@ PkgQuery="brew leaves | sort"
 PkgDelete="brew uninstall"
 FmtDialog="dialog --checklist \"Leaf Packages: %s\" $rows $cols $height %s"
 
+if ! type brew >/dev/null; then
+    echo 'Error: "brew" is not installed.'
+    exit
+fi
+
+if ! type dialog >/dev/null; then
+    echo 'Error: "dialog" is not installed, try "brew install dialog" please.'
+    exit
+fi
+
 KeptLeaves=""
 while true; do
     #==== refresh leaves ====
