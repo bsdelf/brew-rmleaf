@@ -24,13 +24,13 @@
 #  OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
 #  SUCH DAMAGE.
 
-Ver="0.4.1"
+Ver="0.4.2"
 Cols=$((`stty size | cut -d' ' -f2` - 6))
 Rows=$((`stty size | cut -d' ' -f1` - 4))
 Height=$(($Rows - 7))
 PkgQuery="brew leaves | xargs brew desc"
 PkgDelete="brew uninstall"
-FmtDialog="dialog --checklist \"Leaf Packages: %s\" $Rows $Cols $Height %s"
+FmtDialog="dialog --checklist \"Leaf Formulars: %s\" $Rows $Cols $Height %s"
 
 if ! type brew >/dev/null; then
     echo 'Error: "brew" is not installed.'
