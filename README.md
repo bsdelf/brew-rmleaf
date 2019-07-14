@@ -1,5 +1,5 @@
 # Description
 
-`brew-rmleaf` is an interactive tool for orphan formular removal.
+`brew-rmleaf` is an interactive tool for orphan formula removal.
 
 
