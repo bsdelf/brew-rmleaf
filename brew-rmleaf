@@ -24,7 +24,7 @@
 #  OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
 #  SUCH DAMAGE.
 
-Ver="0.4.0"
+Ver="0.4.1"
 Cols=$((`stty size | cut -d' ' -f2` - 6))
 Rows=$((`stty size | cut -d' ' -f1` - 4))
 Height=$(($Rows - 7))
@@ -45,7 +45,7 @@ fi
 for arg in "$@"; do
     case $arg in
         -v|--version)
-        printf "$0 version $Ver\n"
+        printf "$(basename $0) version $Ver\n"
         exit
         ;;
     esac
